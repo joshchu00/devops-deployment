@@ -1,0 +1,33 @@
+---
+- name: create deployment directory
+  file:
+    path: "{{ DEPLOYMENT_ROOT }}/trash"
+    state: directory
+    mode: 0755
+
+- name: copy docker-compose.yml
+  copy:
+    src: docker-compose.yml
+    dest: "{{ DEPLOYMENT_ROOT }}/trash/docker-compose.yml"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: generate .env
+  blockinfile:
+    path: "{{ DEPLOYMENT_ROOT }}/trash/.env"
+    create: yes
+    owner: root
+    group: root
+    mode: 0644
+    block: |
+      JENKINS_TAG={{ JENKINS_TAG }}
+
+- name: start docker
+  #docker_service:
+  #  project_src: "{{ DEPLOYMENT_ROOT }}/trash"
+  #  state: present
+  command: docker-compose up -d
+  args:
+    chdir: "{{ DEPLOYMENT_ROOT }}/trash"
+    
