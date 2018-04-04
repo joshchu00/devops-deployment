@@ -1,6 +1,0 @@
-[trash]
-trash_1 ansible_host=ec2-50-112-45-185.us-west-2.compute.amazonaws.com ansible_port=22 ansible_user=centos
-
-[trash:vars]
-DEPLOYMENT_ROOT=/root
-JENKINS_TAG=2.60.3
