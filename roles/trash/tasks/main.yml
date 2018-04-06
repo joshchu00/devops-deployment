@@ -21,7 +21,44 @@
     group: root
     mode: 0644
     block: |
+      DEPLOYMENT_ROOT={{ DEPLOYMENT_ROOT }}
+
+      NGINX_TAG={{ NGINX_TAG }}
       JENKINS_TAG={{ JENKINS_TAG }}
+
+- name: create nginx directory
+  file:
+    path: "{{ DEPLOYMENT_ROOT }}/trash/nginx"
+    state: directory
+    mode: 0755
+
+- name: create nginx conf directory
+  file:
+    path: "{{ DEPLOYMENT_ROOT }}/trash/nginx/conf"
+    state: directory
+    mode: 0755
+
+- name: copy nginx.conf
+  copy:
+    src: nginx/conf/nginx.conf
+    dest: "{{ DEPLOYMENT_ROOT }}/trash/nginx/conf/nginx.conf"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: create nginx html directory
+  file:
+    path: "{{ DEPLOYMENT_ROOT }}/trash/nginx/html"
+    state: directory
+    mode: 0755
+
+- name: copy index.html
+  copy:
+    src: nginx/html/index.html
+    dest: "{{ DEPLOYMENT_ROOT }}/trash/nginx/html/index.html"
+    owner: root
+    group: root
+    mode: 0644
 
 - name: start docker
   #docker_service:
