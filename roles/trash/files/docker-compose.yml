@@ -1,15 +1,5 @@
 version: "2"
 services:
-  nginx:
-    image: nginx:${NGINX_TAG}
-    ports:
-      - 20080:80
-      - 20443:443
-    volumes:
-      - "${DEPLOYMENT_ROOT}/trash/nginx/conf/nginx.conf:/etc/nginx/nginx.conf:z"
-      - "${DEPLOYMENT_ROOT}/trash/nginx/html:/usr/share/nginx/html:z"
-      - "/etc/letsencrypt:/etc/certs"
-    restart: always
   jenkins:
     image: jenkins:${JENKINS_TAG}
     ports:
@@ -17,5 +7,17 @@ services:
     volumes:
       - "jenkins:/var/jenkins_home"
     restart: always
+  registry:
+    image: registry:${REGISTRY_TAG}
+    ports:
+      - 25000:5000
+    volumes:
+      - "registry:/var/lib/registry"
+      - "/etc/letsencrypt:/etc/certs"
+    environment:
+      - "REGISTRY_HTTP_TLS_CERTIFICATE=/etc/certs/live/joshchu999.ddns.net/fullchain.pem"
+      - "REGISTRY_HTTP_TLS_KEY=/etc/certs/live/joshchu999.ddns.net/privkey.pem"
+    restart: always
 volumes:
   jenkins:
+  registry:
