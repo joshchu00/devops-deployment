@@ -13,10 +13,6 @@ services:
       - 25000:5000
     volumes:
       - "registry:/var/lib/registry"
-      - "/etc/letsencrypt:/etc/certs"
-    environment:
-      - "REGISTRY_HTTP_TLS_CERTIFICATE=/etc/certs/live/joshchu999.ddns.net/fullchain.pem"
-      - "REGISTRY_HTTP_TLS_KEY=/etc/certs/live/joshchu999.ddns.net/privkey.pem"
     restart: always
 volumes:
   jenkins:
