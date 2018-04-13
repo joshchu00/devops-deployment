@@ -5,14 +5,18 @@ services:
     ports:
       - 28080:8080
     volumes:
-      - "jenkins:/var/jenkins_home"
+      - "jenkins:/var/jenkins_home:z"
+      - "/var/run/docker.sock:/var/run/docker.sock:z"
+    group_add:
+      - root
+    privileged: true
     restart: always
   registry:
     image: registry:${REGISTRY_TAG}
     ports:
       - 25000:5000
     volumes:
-      - "registry:/var/lib/registry"
+      - "registry:/var/lib/registry:z"
     restart: always
 volumes:
   jenkins:
