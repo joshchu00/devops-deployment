@@ -1,7 +1,7 @@
 version: "2"
 services:
   jenkins:
-    image: jenkins:${JENKINS_TAG}
+    image: ${JENKINS_IMAGE}
     ports:
       - 28080:8080
     volumes:
@@ -12,7 +12,7 @@ services:
     privileged: true
     restart: always
   registry:
-    image: registry:${REGISTRY_TAG}
+    image: ${REGISTRY_IMAGE}
     ports:
       - 25000:5000
     volumes:
