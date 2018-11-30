@@ -24,7 +24,6 @@
       DEPLOYMENT_ROOT={{ DEPLOYMENT_ROOT }}
 
       JENKINS_IMAGE={{ JENKINS_IMAGE }}
-      REGISTRY_IMAGE={{ REGISTRY_IMAGE }}
 
 - name: start docker
   command: /usr/local/bin/docker-compose up -d

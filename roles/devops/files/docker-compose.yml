@@ -11,13 +11,5 @@ services:
       - root
     privileged: true
     restart: always
-  registry:
-    image: ${REGISTRY_IMAGE}
-    ports:
-      - 25000:5000
-    volumes:
-      - "registry:/var/lib/registry:z"
-    restart: always
 volumes:
   jenkins:
-  registry:
