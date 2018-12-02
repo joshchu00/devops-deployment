@@ -10,4 +10,4 @@ devops-1 ansible_host=127.0.0.1 ansible_port=2222 ansible_user=vagrant ansible_s
 [devops:vars]
 DEPLOYMENT_ROOT=/root/devops
 
-JENKINS_IMAGE=jenkins:2.60.3
+JENKINS_IMAGE=jenkins/jenkins:2.153-alpine
